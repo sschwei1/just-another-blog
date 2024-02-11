@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia';
 import { computed, readonly, ref } from 'vue';
 
-interface UserData {
+export interface UserData {
     id: number;
     username: string;
 }
 
-interface AuthData {
+export interface AuthData {
     token: string;
     validUntil: number;
 }
@@ -29,6 +29,12 @@ export const useUserStore = defineStore('user', () => {
         auth.value = undefined;
     }
 
+    const isAuthExpired = computed(() => {
+        // return auth?.value ? auth.value.validUntil < Date.now() : true;
+        // TODO: remove static return value when auth is implemented
+        return false;
+    });
+
     const readonlyUser = computed(() => {
         return user.value ? readonly(user.value) : undefined;    
     });
@@ -40,6 +46,7 @@ export const useUserStore = defineStore('user', () => {
     return {
         user: readonlyUser,
         auth: readonlyAuth,
+        isAuthExpired,
         isLoading: isLoading.value,
         setUser,
         setAuth,
