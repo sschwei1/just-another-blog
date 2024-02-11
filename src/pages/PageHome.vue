@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 
-import BlogListing from '@components/blog/Listing.vue';
+import BlogListing from '@components/blog/BlogListing.vue';
 
 </script>
 

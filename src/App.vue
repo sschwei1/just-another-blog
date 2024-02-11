@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Page from '@components/layout/Page.vue';
+import LayoutPage from '@components/layout/LayoutPage.vue';
 import { watch } from 'vue';
 import { useSettingsStore, Theme } from './store/settingsStore';
 import { usePrimeVue } from 'primevue/config';
@@ -24,7 +24,7 @@ watch(
 </script>
 
 <template>
-    <Page>
-        <router-view />
-    </Page>
+    <LayoutPage>
+        <RouterView />
+    </LayoutPage>
 </template>

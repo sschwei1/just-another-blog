@@ -21,19 +21,19 @@ const themeIcon = computed(() => {
 <template>
     <div class='w-full surface-section p-3 flex justify-content-between'>
         <div>
-            <router-link to='/profile'>
+            <RouterLink to='/profile'>
                 <IconButton icon='USER' />
-            </router-link>
+            </RouterLink>
             <template v-if='!userStore.isAuthExpired'>
-                <router-link to='/create-blog'>
+                <RouterLink to='/create-blog'>
                     <IconButton icon='PLUS_CIRCLE' />
-                </router-link>
-                <router-link to='/following'>
+                </RouterLink>
+                <RouterLink to='/following'>
                     <IconButton icon='STAR' />
-                </router-link>
-                <router-link to='/liked-blogs'>
+                </RouterLink>
+                <RouterLink to='/liked-blogs'>
                     <IconButton icon='HEART' />
-                </router-link>
+                </RouterLink>
             </template>
         </div>
         <div>

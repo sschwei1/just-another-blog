@@ -1,15 +1,18 @@
 <script setup lang='ts'>
 
-import Header from '@components/layout/Header.vue';
+import LayoutHeader from '@components/layout/LayoutHeader.vue';
 
 </script>
 
 <template>
     <div id="app-wrapper" class="surface-ground">
-        <Header />
+        <LayoutHeader />
         
         <div class='w-full p-4 flex-grow-1'>
-            <div id="app-wrapper-inner" class="p-3 w-full h-full surface-section border-round flex flex-column">
+            <div
+                id="app-wrapper-inner"
+                class="p-3 w-full h-full surface-section border-round flex flex-column"
+            >
                 <slot></slot>
             </div>
         </div>

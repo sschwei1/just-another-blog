@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Button, { ButtonProps } from 'primevue/button';
+import PrimeButton, { ButtonProps } from 'primevue/button';
 import { PrimeIcons } from 'primevue/api';
 import { computed } from 'vue';
 
@@ -48,7 +48,11 @@ const handleClick = () => {
 </script>
 
 <template>
-    <Button @click='handleClick' v-bind='props.buttonProps' class='p-2' >
+    <PrimeButton
+        class='p-2'
+        v-bind='props.buttonProps'
+        @click='handleClick'
+    >
         <i :class='classString' />
-    </Button>
+    </PrimeButton>
 </template>

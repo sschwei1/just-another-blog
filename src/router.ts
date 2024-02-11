@@ -6,7 +6,7 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('./pages/Home.vue')
+      component: () => import('./pages/PageHome.vue')
     }, {
       path: '/login',
       component: () => PagePlaceholder
