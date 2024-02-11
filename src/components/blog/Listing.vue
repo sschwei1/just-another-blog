@@ -7,6 +7,6 @@ const userStore = useUserStore();
 
 <template>
     <div>
-        {{ userStore.user.username }}
+        {{ userStore.isLoading }}
     </div>
 </template>

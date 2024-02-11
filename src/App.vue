@@ -1,33 +1,30 @@
 <script setup lang="ts">
 
-import { useUserStore } from '@store/userStore';
-const userStore = useUserStore();
+import Page from '@components/layout/Page.vue';
+import { watch } from 'vue';
+import { useSettingsStore, Theme } from './store/settingsStore';
+import { usePrimeVue } from 'primevue/config';
+
+
+const settings = useSettingsStore();
+const primeVue = usePrimeVue();
+
+watch(
+    () => settings.page.theme,
+    (newTheme, oldTheme) => {
+        const themeStr = (theme: Theme) => `aura-${theme}-purple`;
+        primeVue.changeTheme(
+            themeStr(oldTheme),
+            themeStr(newTheme),
+            'prime-theme-link'
+        );
+    }  
+);
 
 </script>
 
 <template>
-    <div id="app-wrapper" class="surface-ground p-4">
-        <div id="app-wrapper-inner" class="p-3 surface-section border-round flex flex-column">
-            {{ userStore.user.username }}
-        </div>
-        <div id="app-wrapper-inner" class="p-3 surface-section border-round flex flex-column">
-            <router-view />
-        </div>
-    </div>
+    <Page>
+        <router-view />
+    </Page>
 </template>
-
-<style scoped>
-    #app-wrapper {
-        height: 100vh;
-        width: 100vw;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    #app-wrapper-inner {
-        width: 100%;
-    }
-</style>
