@@ -11,9 +11,19 @@ export interface AuthData {
     validUntil: number;
 }
 
+const mockedUser = {
+    id: 1,
+    username: 'testuser'
+};
+
+const mockedAuth = {
+    token: 'testtoken',
+    validUntil: Date.now() + 1000 * 60 * 60
+};
+
 export const useUserStore = defineStore('user', () => {
-    const user = ref<UserData|null>(null);
-    const auth = ref<AuthData|null>(null);
+    const user = ref<UserData|null>(mockedUser);
+    const auth = ref<AuthData|null>(mockedAuth);
     const isLoading = ref<boolean>(false);
 
     const setUser = (newUser: UserData) => {
@@ -30,9 +40,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     const isAuthExpired = computed(() => {
-        // return auth?.value ? auth.value.validUntil < Date.now() : true;
-        // TODO: remove static return value when auth is implemented
-        return false;
+        return auth?.value ? auth.value.validUntil < Date.now() : true;
     });
 
     const readonlyUser = computed(() => {
