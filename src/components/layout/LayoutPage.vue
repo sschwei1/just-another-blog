@@ -5,13 +5,13 @@ import LayoutHeader from '@components/layout/LayoutHeader.vue';
 </script>
 
 <template>
-    <div id="app-wrapper" class="surface-ground">
+    <div id='app-wrapper' class='surface-ground'>
         <LayoutHeader />
         
         <div class='w-full p-4 flex-grow-1'>
             <div
-                id="app-wrapper-inner"
-                class="p-3 w-full h-full surface-section border-round flex flex-column"
+                id='app-wrapper-inner'
+                class='p-3 w-full h-full surface-section border-round flex flex-column'
             >
                 <slot></slot>
             </div>

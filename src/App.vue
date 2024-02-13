@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 
 import LayoutPage from '@components/layout/LayoutPage.vue';
 import { watch } from 'vue';

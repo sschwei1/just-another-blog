@@ -10,4 +10,7 @@ const route = useRoute();
     <div>
         {{ route.fullPath }}
     </div>
+    <div>
+        {{ route.params }}
+    </div>
 </template>

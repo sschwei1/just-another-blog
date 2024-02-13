@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang='ts'>
 
 import PrimeButton, { ButtonProps } from 'primevue/button';
 import { PrimeIcons } from 'primevue/api';
