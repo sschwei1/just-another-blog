@@ -15,8 +15,6 @@ const defaultPageSettings: DeepReadonly<PageSettings> = {
     }
 };
 
-Object.freeze(defaultPageSettings);
-
 const storageKeys = {
     page: 'settings.page'
 };
@@ -41,12 +39,12 @@ export const useSettingsStore = defineStore('settings', () => {
         saveDataToLocalStorage(storageKeys.page, pageSettings.value);
     }
 
-    const readonlyPageSettings = computed(() => {
+    const readonlyPage = computed(() => {
         return readonly(pageSettings.value);
     });
 
     return {
-        page: readonlyPageSettings,
+        page: readonlyPage,
         toggleThemeType,
         setThemeColor,
         default: {
