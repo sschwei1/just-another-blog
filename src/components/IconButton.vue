@@ -16,7 +16,7 @@ interface IconButtonProps {
 }
 
 type IconButtonEmits = {
-    onClick: []
+    onClick: ['event']
 }
 
 const props = withDefaults(defineProps<IconButtonProps>(), {
@@ -41,8 +41,8 @@ const classString = computed(() => {
         .join(' ')
 });
 
-const handleClick = () => {
-    emit('onClick');
+const handleClick = (event: any) => {
+    emit('onClick', event);
 }
 
 </script>

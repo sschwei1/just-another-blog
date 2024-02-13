@@ -2,24 +2,31 @@
 
 import LayoutPage from '@components/layout/LayoutPage.vue';
 import { watch } from 'vue';
-import { useSettingsStore, Theme } from './store/settingsStore';
+import { useSettingsStore } from './store/settingsStore';
 import { usePrimeVue } from 'primevue/config';
+import { Theme, getThemeString } from '@services/colorService';
 
 
-const settings = useSettingsStore();
+const settingsStore = useSettingsStore();
 const primeVue = usePrimeVue();
 
+const updateTheme = (newTheme: Theme, oldTheme: Theme) => {
+    primeVue.changeTheme(
+        getThemeString(oldTheme),
+        getThemeString(newTheme),
+        'prime-theme-link'
+    );
+}
+
 watch(
-    () => settings.page.theme,
-    (newTheme, oldTheme) => {
-        const themeStr = (theme: Theme) => `aura-${theme}-purple`;
-        primeVue.changeTheme(
-            themeStr(oldTheme),
-            themeStr(newTheme),
-            'prime-theme-link'
-        );
-    }  
+    () => settingsStore.page.theme,
+    updateTheme
 );
+
+/**
+ * Update theme on first load, to overrite the default theme in case theme was loaded from localStorage
+ */
+updateTheme(settingsStore.page.theme, settingsStore.default.page.theme);
 
 </script>
 

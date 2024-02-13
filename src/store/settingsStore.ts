@@ -1,21 +1,45 @@
 import { defineStore } from 'pinia';
 import { computed, readonly, ref } from 'vue';
-
-export type Theme = 'dark' | 'light';
+import { Theme, ThemeColor } from '@services/colorService';
+import { getDataFromLocalStorage, saveDataToLocalStorage } from '@services/localStorageService';
+import { DeepReadonly } from 'vue';
 
 interface PageSettings {
     theme: Theme;
 }
 
-export const useSettingsStore = defineStore('settings', () => {
-    const pageSettings = ref<PageSettings>({
-        theme: 'dark'
-    });
+const defaultPageSettings: DeepReadonly<PageSettings> = {
+    theme: {
+        type: 'dark',
+        color: 'purple'
+    }
+};
 
-    const toggleTheme = () => {
-        const newTheme = pageSettings.value.theme === 'dark' ? 'light' : 'dark';
-        pageSettings.value.theme = newTheme;
+Object.freeze(defaultPageSettings);
+
+const storageKeys = {
+    page: 'settings.page'
+};
+
+export const useSettingsStore = defineStore('settings', () => {
+    const pageSettings = ref<PageSettings>(getDataFromLocalStorage(storageKeys.page) ?? defaultPageSettings);
+
+    const toggleThemeType = () => {
+        const newTheme = pageSettings.value.theme.type === 'dark' ? 'light' : 'dark';
+        pageSettings.value.theme = {
+            ...pageSettings.value.theme,
+            type: newTheme
+        };
+        saveDataToLocalStorage(storageKeys.page, pageSettings.value);
     };
+
+    const setThemeColor = (themeColor: ThemeColor) => {
+        pageSettings.value.theme = {
+            ...pageSettings.value.theme,
+            color: themeColor
+        };
+        saveDataToLocalStorage(storageKeys.page, pageSettings.value);
+    }
 
     const readonlyPageSettings = computed(() => {
         return readonly(pageSettings.value);
@@ -23,6 +47,10 @@ export const useSettingsStore = defineStore('settings', () => {
 
     return {
         page: readonlyPageSettings,
-        toggleTheme
+        toggleThemeType,
+        setThemeColor,
+        default: {
+            page: defaultPageSettings
+        }
     };
 });

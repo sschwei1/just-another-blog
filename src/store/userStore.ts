@@ -12,8 +12,8 @@ export interface AuthData {
 }
 
 export const useUserStore = defineStore('user', () => {
-    const user = ref<UserData|undefined>(undefined);
-    const auth = ref<AuthData|undefined>(undefined);
+    const user = ref<UserData|null>(null);
+    const auth = ref<AuthData|null>(null);
     const isLoading = ref<boolean>(false);
 
     const setUser = (newUser: UserData) => {
@@ -25,8 +25,8 @@ export const useUserStore = defineStore('user', () => {
     }
 
     const clearLogin = () => {
-        user.value = undefined;
-        auth.value = undefined;
+        user.value = null;
+        auth.value = null;
     }
 
     const isAuthExpired = computed(() => {
@@ -36,11 +36,11 @@ export const useUserStore = defineStore('user', () => {
     });
 
     const readonlyUser = computed(() => {
-        return user.value ? readonly(user.value) : undefined;    
+        return user.value ? readonly(user.value) : null;    
     });
 
     const readonlyAuth = computed(() => {
-        return auth.value ? readonly(auth.value) : undefined;
+        return auth.value ? readonly(auth.value) : null;
     });
 
     return {
