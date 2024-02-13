@@ -30,7 +30,7 @@ const routePaths = {
     [RouteNames.Following]:   '/following',
 };
 
-const genRouteElement = (routeName: RouteNames, component: Component|DefineComponent) => {
+const getRouteElement = (routeName: RouteNames, component: Component|DefineComponent) => {
     return {
         path: routePaths[routeName],
         name: routeName,
@@ -48,16 +48,16 @@ export const getNamedRoute = (routeName: RouteNames, params: Record<string, any>
 export default createRouter({
     history: createWebHistory(),
     routes: [
-        genRouteElement(RouteNames.Home,        import('./pages/PageHome.vue')),
-        genRouteElement(RouteNames.Login,       PagePlaceholder),
-        genRouteElement(RouteNames.Register,    PagePlaceholder),
-        genRouteElement(RouteNames.Profile,     PagePlaceholder),
-        genRouteElement(RouteNames.EditProfile, PagePlaceholder),
-        genRouteElement(RouteNames.Search,      PagePlaceholder),
-        genRouteElement(RouteNames.Blog,        PagePlaceholder),
-        genRouteElement(RouteNames.CreateBlog,  PagePlaceholder),
-        genRouteElement(RouteNames.EditBlog,    PagePlaceholder),
-        genRouteElement(RouteNames.LikedBlogs,  PagePlaceholder),
-        genRouteElement(RouteNames.Following,   PagePlaceholder),
+        getRouteElement(RouteNames.Home,        import('./pages/PageHome.vue')),
+        getRouteElement(RouteNames.Login,       PagePlaceholder),
+        getRouteElement(RouteNames.Register,    PagePlaceholder),
+        getRouteElement(RouteNames.Profile,     PagePlaceholder),
+        getRouteElement(RouteNames.EditProfile, PagePlaceholder),
+        getRouteElement(RouteNames.Search,      PagePlaceholder),
+        getRouteElement(RouteNames.Blog,        PagePlaceholder),
+        getRouteElement(RouteNames.CreateBlog,  PagePlaceholder),
+        getRouteElement(RouteNames.EditBlog,    PagePlaceholder),
+        getRouteElement(RouteNames.LikedBlogs,  PagePlaceholder),
+        getRouteElement(RouteNames.Following,   PagePlaceholder),
     ],
 });
