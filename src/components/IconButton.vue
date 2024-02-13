@@ -4,7 +4,6 @@ import PrimeButton, { ButtonProps } from 'primevue/button';
 import { PrimeIcons } from 'primevue/api';
 import { computed } from 'vue';
 
-
 type PrimeIconString = keyof typeof PrimeIcons;
 
 interface IconButtonProps {
@@ -16,7 +15,7 @@ interface IconButtonProps {
 }
 
 type IconButtonEmits = {
-    onClick: ['event']
+    onClick: [event: MouseEvent]
 }
 
 const props = withDefaults(defineProps<IconButtonProps>(), {
@@ -41,7 +40,7 @@ const classString = computed(() => {
         .join(' ')
 });
 
-const handleClick = (event: any) => {
+const handleClick = (event: MouseEvent) => {
     emit('onClick', event);
 }
 
