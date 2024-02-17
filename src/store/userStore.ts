@@ -11,19 +11,9 @@ export interface AuthData {
     validUntil: number;
 }
 
-const mockedUser = {
-    id: 1,
-    username: 'testuser'
-};
-
-const mockedAuth = {
-    token: 'testtoken',
-    validUntil: Date.now() + 1000 * 60 * 60
-};
-
 export const useUserStore = defineStore('user', () => {
-    const user = ref<UserData|null>(mockedUser);
-    const auth = ref<AuthData|null>(mockedAuth);
+    const user = ref<UserData|null>(null);
+    const auth = ref<AuthData|null>(null);
     const isLoading = ref<boolean>(false);
 
     const setUser = (newUser: UserData) => {
@@ -32,6 +22,11 @@ export const useUserStore = defineStore('user', () => {
 
     const setAuth = (newAuth: AuthData) => {
         auth.value = newAuth;
+    }
+
+    const login = (user: UserData, auth: AuthData) => {
+        setUser(user);
+        setAuth(auth);
     }
 
     const clearLogin = () => {
@@ -58,6 +53,7 @@ export const useUserStore = defineStore('user', () => {
         isLoading: isLoading.value,
         setUser,
         setAuth,
+        login,
         clearLogin
     };
 });

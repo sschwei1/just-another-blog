@@ -8,8 +8,9 @@ type PrimeIconString = keyof typeof PrimeIcons;
 
 interface IconButtonProps {
     icon: PrimeIconString,
-    spinningIcon?: boolean,
     iconCentered?: boolean,
+    padding?: number,
+    spinningIcon?: boolean,
 
     buttonProps?: ButtonProps
 }
@@ -21,6 +22,7 @@ type IconButtonEmits = {
 const props = withDefaults(defineProps<IconButtonProps>(), {
     spinningIcon: false,
     iconCentered: true,
+    padding: 2,
     buttonProps: () => ({
         link: true
     })
@@ -32,6 +34,7 @@ const classString = computed(() => {
     const iconClass =  PrimeIcons[props.icon];
     const useIconClasses = {
         'pi-spin': props.spinningIcon,
+        [`p-${props.padding}`]: true,
         [iconClass]: true
     };
 
@@ -48,7 +51,7 @@ const handleClick = (event: MouseEvent) => {
 
 <template>
     <PrimeButton
-        class='p-2'
+        class='p-0'
         v-bind='props.buttonProps'
         @click='handleClick'
     >

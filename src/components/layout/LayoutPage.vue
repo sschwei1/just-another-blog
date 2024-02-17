@@ -8,10 +8,10 @@ import LayoutHeader from '@components/layout/LayoutHeader.vue';
     <div id='app-wrapper' class='surface-ground'>
         <LayoutHeader />
         
-        <div class='w-full p-4 flex-grow-1'>
+        <div class='w-full p-4 flex-grow-1 flex flex-column justify-content-center'>
             <div
                 id='app-wrapper-inner'
-                class='p-3 w-full h-full surface-section border-round flex flex-column'
+                class='py-5 px-4 w-full surface-section border-round flex flex-column justify-content-center align-items-center'
             >
                 <slot></slot>
             </div>

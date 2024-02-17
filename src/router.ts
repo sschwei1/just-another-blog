@@ -28,13 +28,13 @@ const routePaths = {
     [RouteNames.EditBlog]:    '/edit-blog/:id',
     [RouteNames.LikedBlogs]:  '/liked-blogs',
     [RouteNames.Following]:   '/following',
-};
+} as const;
 
 const getRouteElement = (routeName: RouteNames, component: Component|DefineComponent) => {
     return {
         path: routePaths[routeName],
         name: routeName,
-        component: component,
+        component: () => component,
     };
 };
 
@@ -49,8 +49,8 @@ export default createRouter({
     history: createWebHistory(),
     routes: [
         getRouteElement(RouteNames.Home,        import('./pages/PageHome.vue')),
-        getRouteElement(RouteNames.Login,       PagePlaceholder),
-        getRouteElement(RouteNames.Register,    PagePlaceholder),
+        getRouteElement(RouteNames.Login,       import('./pages/PageLogin.vue')),
+        getRouteElement(RouteNames.Register,    import('./pages/PageRegister.vue')),
         getRouteElement(RouteNames.Profile,     PagePlaceholder),
         getRouteElement(RouteNames.EditProfile, PagePlaceholder),
         getRouteElement(RouteNames.Search,      PagePlaceholder),

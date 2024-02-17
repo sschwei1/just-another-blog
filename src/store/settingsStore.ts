@@ -17,7 +17,7 @@ const defaultPageSettings: DeepReadonly<PageSettings> = {
 
 const storageKeys = {
     page: 'settings.page'
-};
+} as const;
 
 export const useSettingsStore = defineStore('settings', () => {
     const pageSettings = ref<PageSettings>(getDataFromLocalStorage(storageKeys.page) ?? defaultPageSettings);
